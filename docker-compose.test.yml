@@ -1,0 +1,34 @@
+version: '3'
+services:
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube
+    ports:
+      - 9000:9000
+      - 9092:9092
+    networks:
+      - backend_app-network 
+    volumes:
+      - SonarQube_data:/opt/sonarqube/data
+      - SonarQube_extension:/opt/sonarqube/extensions
+      - SonarQube_logs:/opt/sonarqube/logs
+
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3
+    ports:
+      - 8081:8081
+    networks:
+      - backend_app-network 
+    volumes:
+      - nexus-data:/nexus-data
+
+networks:
+  backend_app-network:
+    driver: bridge
+
+volumes:
+  SonarQube_data:
+  SonarQube_extension:
+  SonarQube_logs:
+  nexus-data:
