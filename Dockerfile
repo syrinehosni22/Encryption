@@ -1,5 +1,11 @@
-FROM eclipse-temurin:17-jdk-jammy
+FROM maven:3.8.4-openjdk-17
 
-EXPOSE 8081
-ADD target/Encryption-App-0.0.1.jar Encryption-App-0.0.1.jar
-ENTRYPOINT ["java","-jar","/Encryption-App-0.0.1.jar"]
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN mvn dependency:resolve
+
+COPY src ./src
+
+CMD ["mvn", "spring-boot:run"]
