@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     container_name: postgres
     ports:
-      - "5433:5433"
+      - "5432:5432"
     environment:
       POSTGRES_DB: encryptionApp
       POSTGRES_USER: postgres
@@ -18,12 +18,11 @@ services:
     image: garaali/encryption_app_be:1.0.0
     container_name: encryptionApp
     ports:
-      - "8086:8086"
+      - "8085:8085"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/encryptionApp
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=garaali
-      - SERVER_PORT=8086
     depends_on:
       - postgres
     networks:
