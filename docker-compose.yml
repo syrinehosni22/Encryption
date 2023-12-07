@@ -18,11 +18,12 @@ services:
     image: garaali/encryption_app_be:1.0.0
     container_name: encryptionApp
     ports:
-      - "8085:8085"
+      - "8086:8086"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/encryptionApp
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=garaali
+      - SERVER_PORT=8086
     depends_on:
       - postgres
     networks:
